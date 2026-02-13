@@ -33,19 +33,31 @@ A command-line tool for both humans and agents to interact with Salt SDK.
 
 ## Installation
 
-### For OpenClaw Agents
+### For OpenClaw Agents (Quick Install)
 
-Install the skill package directly from the GitHub release:
+Download and install the skill package from the GitHub release:
 
 ```bash
-openclaw skills install https://github.com/KagamiDigital/salt-agent-skill/releases/download/v1.0.0/salt-sdk.skill
+# Download the skill package
+cd ~/.openclaw/workspace/skills
+curl -L https://github.com/KagamiDigital/salt-agent-skill/releases/download/v1.0.0/salt-sdk.skill -o salt-sdk.skill
+
+# Extract and rename
+unzip salt-sdk.skill
+mv salt-sdk-clean salt-sdk
+
+# Clean up
+rm salt-sdk.skill
+
+# Verify installation
+openclaw skills list | grep salt-sdk
 ```
 
-The skill will be installed to `~/.openclaw/workspace/skills/salt-sdk/` and automatically discovered when working with Salt operations.
+The skill will be auto-discovered by OpenClaw when working with Salt operations.
 
-### For Manual/Development Installation
+### For Development (Git Clone)
 
-Clone or download the repository and place in the OpenClaw skills directory:
+Clone the repository directly to the skills directory:
 
 ```bash
 # Clone to skills directory
