@@ -149,11 +149,11 @@ salt submit --to 0x456... --value 0.01 -t
 
 **Agent translates to:**
 ```bash
-salt init -t
+salt status -t
 ```
 
 **Pattern:**
-- `salt init` shows all accounts with balances
+- `salt status` shows all accounts with balances
 - Use `--no-listen` if you don't want to start listener
 
 ### Manage Invitations
@@ -218,12 +218,12 @@ salt stop -t
 - "from my DeFi account"
 
 **Agent must:**
-1. Match account name or ID from `salt init` output
+1. Match account name or ID from `salt status` output
 2. Use `--account <account-id>` flag
 
 **If not specified:**
 - CLI uses first account by default
-- Agent can ask user which account, or list them with `salt init -t`
+- Agent can ask user which account, or list them with `salt status -t`
 
 ## Chain Selection
 
@@ -254,7 +254,7 @@ salt stop -t
 **Agent process:**
 1. Parse intent: native ETH transfer
 2. Extract: amount=0.5, to=0x4476..., account=CoManagedAcc, env=testnet
-3. Get account ID: Run `salt init -t` to find CoManagedAcc ID
+3. Get account ID: Run `salt status -t` to find CoManagedAcc ID
 4. Build command:
    ```bash
    salt submit --to 0x447603546Ee18245d1640Aaa5150eB3A328256EF --value 0.5 --account 698e2425c93351e4490a358f -t
@@ -274,7 +274,7 @@ salt stop -t
 - Suggest fixes or retry
 
 **If uncertain:**
-- Run `salt init -t` to get current state
+- Run `salt status -t` to get current state
 - Ask user for clarification
 - Default to safer option (testnet, dry-run if available)
 

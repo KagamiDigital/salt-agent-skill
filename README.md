@@ -21,7 +21,7 @@ A command-line tool for both humans and agents to interact with Salt SDK.
 
 **Current Commands:**
 
-- `salt init` - Initialize Salt: check invites, list accounts and balances
+- `salt status` - Check Salt status: view invites, organizations, accounts, and balances
 
 **Coming Soon:**
 
@@ -149,22 +149,22 @@ Create `.rpc-config.json`:
 
 ### Commands
 
-#### `salt init`
+#### `salt status`
 
-Initialize Salt: check pending invitations and list all accounts with balances.
+Check Salt status: view pending invitations, organizations, accounts, and balances.
 
 **Usage:**
 ```bash
 # Mainnet (default)
-salt init
+salt status
 
 # Testnet
-salt init -t
-salt init --testnet
+salt status -t
+salt status --testnet
 
 # Mainnet (explicit)
-salt init -m
-salt init --mainnet
+salt status -m
+salt status --mainnet
 ```
 
 **Output:**

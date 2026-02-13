@@ -229,11 +229,10 @@ A command-line tool for both humans and agents. Agents: read **[CLI_PATTERNS.md]
 
 ### Core Commands
 
-**`salt init`** - Check invites, list accounts, start listener
+**`salt status`** - Check Salt status: view invites, organizations, accounts, and balances
 ```bash
-salt init -t                    # testnet
-salt init -m                    # mainnet
-salt init -t --no-listen        # skip listener
+salt status -t                  # testnet
+salt status -m                  # mainnet
 ```
 
 **`salt submit`** - Universal transaction command

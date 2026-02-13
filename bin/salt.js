@@ -7,7 +7,7 @@ if (process.argv.includes('-help')) {
 }
 
 const { program } = require('commander');
-const { initCommand } = require('../lib/commands/init');
+const { statusCommand } = require('../lib/commands/status');
 const { submitCommand } = require('../lib/commands/submit');
 const { invitesCommand } = require('../lib/commands/invites');
 const { listenCommand } = require('../lib/commands/listen');
@@ -19,12 +19,11 @@ program
   .version('0.1.0');
 
 program
-  .command('init')
-  .description('Initialize Salt: check invites, list accounts, start nudge listener')
+  .command('status')
+  .description('Check Salt status: view invites, organizations, accounts, and balances')
   .option('-t, --testnet', 'Use testnet (Arbitrum Sepolia)')
   .option('-m, --mainnet', 'Use mainnet (Arbitrum One)')
-  .option('--no-listen', 'Do not start nudge listener')
-  .action(initCommand);
+  .action(statusCommand);
 
 program
   .command('submit')
