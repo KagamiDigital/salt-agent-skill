@@ -2,6 +2,55 @@
 
 This guide helps agents interpret natural language requests and translate them into correct Salt CLI commands.
 
+## Prerequisites: Agent Wallet Setup
+
+**BEFORE USING SALT CLI**, you must have a wallet. Check these locations:
+- `~/.openclaw/workspace/.agent-wallet.json`
+- `.agent-wallet.json` (current directory)
+- `~/.salt-cli.json`
+
+### If No Wallet Exists
+
+**User says:** "I don't have a wallet" or "set up Salt" or CLI fails with wallet error
+
+**Agent must:**
+
+1. Create wallet:
+```javascript
+const { ethers } = require('ethers');
+const fs = require('fs');
+const path = require('path');
+
+const wallet = ethers.Wallet.createRandom();
+
+const config = {
+  privateKey: wallet.privateKey,
+  address: wallet.address,
+  mnemonic: wallet.mnemonic.phrase
+};
+
+const walletPath = path.join(process.env.HOME, '.openclaw', 'workspace', '.agent-wallet.json');
+fs.writeFileSync(walletPath, JSON.stringify(config, null, 2));
+
+console.log('✅ Wallet created!');
+console.log('Address:', wallet.address);
+```
+
+2. Inform user:
+   - Wallet address created
+   - Need to fund for gas (testnet faucet or mainnet transfer)
+   - Mnemonic saved securely (never share)
+
+3. Provide funding instructions:
+   - **Testnet**: "Use faucet at https://faucet.quicknode.com/arbitrum/sepolia"
+   - **Mainnet**: "Send ETH to [address] for gas fees"
+
+**Security:**
+- Never display private key in chat
+- Never commit wallet to git
+- Store in secure location only
+- Remind user to backup mnemonic
+
 ## Request Interpretation Patterns
 
 ### Native Token Transfers

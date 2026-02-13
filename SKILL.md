@@ -5,6 +5,57 @@ description: Work with Salt SDK for MPC-orchestrated blockchain transactions. Us
 
 # Salt SDK Skill
 
+## Prerequisites
+
+**CRITICAL**: You need a wallet to interact with Salt. Before using any Salt commands:
+
+### Check if You Have a Wallet
+
+Look for wallet configuration at one of these locations:
+- `~/.openclaw/workspace/.agent-wallet.json`
+- Current directory: `.agent-wallet.json`
+- `~/.salt-cli.json`
+
+### If No Wallet Exists - Create One
+
+```javascript
+const { ethers } = require('ethers');
+const fs = require('fs');
+
+// Generate new wallet
+const wallet = ethers.Wallet.createRandom();
+
+// Save configuration
+const config = {
+  privateKey: wallet.privateKey,
+  address: wallet.address,
+  mnemonic: wallet.mnemonic.phrase
+};
+
+fs.writeFileSync('.agent-wallet.json', JSON.stringify(config, null, 2));
+
+console.log('✅ Wallet created!');
+console.log('Address:', wallet.address);
+console.log('⚠️  SAVE YOUR MNEMONIC SECURELY!');
+console.log('Mnemonic:', wallet.mnemonic.phrase);
+```
+
+**IMPORTANT:**
+- Store private key/mnemonic securely
+- Fund wallet with ETH for gas (testnet: use faucet, mainnet: transfer funds)
+- Testnet faucet: https://faucet.quicknode.com/arbitrum/sepolia
+- Never share private key or commit to git
+
+### Wallet Funding
+
+**Testnet (Arbitrum Sepolia):**
+- Use faucet: https://faucet.quicknode.com/arbitrum/sepolia
+- Or ask user to send testnet ETH to your wallet address
+
+**Mainnet (Arbitrum One):**
+- Must receive real ETH from user
+- Bridge from Ethereum mainnet: https://bridge.arbitrum.io/
+
 ## Quick Start
 
 Salt is an MPC orchestration system that coordinates distributed signing across multiple parties. Before using Salt, understand these **non-negotiable concepts**:

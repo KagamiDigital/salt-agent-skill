@@ -52,9 +52,66 @@ npm install -g salt-cli
 
 ## CLI Usage
 
+### Prerequisites: Wallet Setup
+
+**REQUIRED**: You need a wallet to use Salt CLI. 
+
+#### Check if Wallet Exists
+
+The CLI looks for wallet configuration at:
+- `~/.openclaw/workspace/.agent-wallet.json`
+- `.agent-wallet.json` (current directory)
+- `~/.salt-cli.json`
+
+#### Create a Wallet (if needed)
+
+**Quick method:**
+```bash
+node scripts/create-wallet.js
+```
+
+This will:
+- Generate a new random wallet
+- Save to `~/.openclaw/workspace/.agent-wallet.json`
+- Display your address and mnemonic
+- Set secure file permissions (0600)
+
+**Manual method:**
+```javascript
+const { ethers } = require('ethers');
+const fs = require('fs');
+
+const wallet = ethers.Wallet.createRandom();
+
+const config = {
+  privateKey: wallet.privateKey,
+  address: wallet.address,
+  mnemonic: wallet.mnemonic.phrase
+};
+
+fs.writeFileSync('.agent-wallet.json', JSON.stringify(config, null, 2));
+console.log('Address:', wallet.address);
+console.log('Mnemonic:', wallet.mnemonic.phrase);
+```
+
+**⚠️ Security:**
+- Never share private key or mnemonic
+- Backup mnemonic securely
+- Don't commit wallet files to git (already in .gitignore)
+
+#### Fund Your Wallet
+
+**Testnet (Arbitrum Sepolia):**
+- Use faucet: https://faucet.quicknode.com/arbitrum/sepolia
+- Paste your wallet address to receive test ETH
+
+**Mainnet (Arbitrum One):**
+- Transfer ETH from another wallet
+- Bridge from Ethereum: https://bridge.arbitrum.io/
+
 ### Configuration
 
-Create a wallet configuration file at one of these locations:
+Wallet configuration file format:
 
 - `.agent-wallet.json` (current directory)
 - `~/.openclaw/workspace/.agent-wallet.json`
