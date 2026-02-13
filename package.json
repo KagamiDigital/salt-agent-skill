@@ -1,0 +1,26 @@
+{
+  "name": "salt-cli",
+  "version": "0.1.0",
+  "description": "CLI tool for Salt SDK - MPC-orchestrated blockchain transactions",
+  "main": "bin/salt.js",
+  "bin": {
+    "salt": "bin/salt.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "salt",
+    "mpc",
+    "blockchain",
+    "cli"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "ethers": "^5.7.2",
+    "salt-sdk": "^0.0.14"
+  }
+}

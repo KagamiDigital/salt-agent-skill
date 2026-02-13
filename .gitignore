@@ -1,0 +1,9 @@
+node_modules/
+.agent-wallet.json
+.rpc-config.json
+.salt-cli.json
+.salt-rpc.json
+*.log
+.DS_Store
+dist/
+*.skill
