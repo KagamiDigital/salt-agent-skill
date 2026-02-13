@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+// Support -help as alias for --help
+if (process.argv.includes('-help')) {
+  const index = process.argv.indexOf('-help');
+  process.argv[index] = '--help';
+}
+
 const { program } = require('commander');
 const { initCommand } = require('../lib/commands/init');
 const { submitCommand } = require('../lib/commands/submit');
