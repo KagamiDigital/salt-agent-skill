@@ -172,10 +172,51 @@ const contractAddress = result.broadcastReceipt?.contractAddress;
 
 All states are lowercase strings. Always check `result.state === 'success'`.
 
+## Salt CLI Tool
+
+A command-line tool for both humans and agents. Agents: read **[CLI_PATTERNS.md](CLI_PATTERNS.md)** to interpret natural language requests.
+
+### Core Commands
+
+**`salt init`** - Check invites, list accounts, start listener
+```bash
+salt init -t                    # testnet
+salt init -m                    # mainnet
+salt init -t --no-listen        # skip listener
+```
+
+**`salt submit`** - Universal transaction command
+```bash
+# Native send
+salt submit --to 0x123... --value 0.01 -t
+
+# ERC20/Contract call
+salt submit --to 0xToken... --value 0 --data 0x... -t
+
+# Deploy contract
+salt submit --deploy --data 0x<bytecode> -t
+```
+
+**`salt invites`** - Manage invitations
+```bash
+salt invites list -t
+salt invites accept --id <id> -t
+salt invites accept-all -t
+```
+
+**`salt listen`** - Start nudge listener
+```bash
+salt listen -t                  # start listener
+salt stop -t                    # stop listener
+```
+
+**`salt -help`** - Show all commands
+
 ## Detailed Reference
 
 For complete troubleshooting, API details, and advanced patterns:
 
+- **[CLI_PATTERNS.md](CLI_PATTERNS.md)** - How agents interpret natural language requests and map to CLI commands
 - **[REFERENCE.md](references/REFERENCE.md)** - Full API reference and troubleshooting matrix
 - **[PATTERNS.md](references/PATTERNS.md)** - Advanced patterns and code examples
 - **[scripts/](scripts/)** - Working example scripts
