@@ -279,25 +279,26 @@ Monitors a Salt account for token deposits and automatically sweeps them into De
 
 **Quick Start:**
 ```bash
-cd strategies/token-sweeper
+# Works from anywhere - uses relative paths to skill dependencies
+SWEEPER=~/.openclaw/workspace/skills/salt-sdk/strategies/token-sweeper/sweeper.js
 
 # Initialize config
-node sweeper.js --init
+node $SWEEPER --init
 
 # Or use a template
-cp protocols/aave-v3-arb-sepolia.json config.json
+cp ~/.openclaw/workspace/skills/salt-sdk/strategies/token-sweeper/protocols/aave-v3-arb-sepolia.json config.json
 
 # Edit with your details
 nano config.json
 
 # Run sweeper
-nohup node sweeper.js > sweeper.log 2>&1 &
+nohup node $SWEEPER > sweeper.log 2>&1 &
 
 # Check status
-node sweeper.js --report
+node $SWEEPER --report
 
 # Stop
-node sweeper.js --stop
+node $SWEEPER --stop
 ```
 
 **Example Use Cases:**
