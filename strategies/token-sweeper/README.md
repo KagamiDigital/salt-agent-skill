@@ -14,7 +14,11 @@ A generalized automation strategy for Salt SDK that monitors a Salt account for 
 ### 1. Initialize Configuration
 
 ```bash
-cd strategies/token-sweeper
+# From anywhere in your system
+node ~/.openclaw/workspace/skills/salt-sdk/strategies/token-sweeper/sweeper.js --init
+
+# Or use a shorter alias
+cd ~/.openclaw/workspace/skills/salt-sdk/strategies/token-sweeper
 node sweeper.js --init
 ```
 
@@ -60,18 +64,23 @@ Send a message to your bot, then check the conversation metadata in OpenClaw.
 ### 4. Run the Sweeper
 
 ```bash
+# Define path for convenience (or use full path)
+SWEEPER=~/.openclaw/workspace/skills/salt-sdk/strategies/token-sweeper/sweeper.js
+
 # Start monitoring (runs as background process)
-nohup node sweeper.js > sweeper.log 2>&1 &
+nohup node $SWEEPER > sweeper.log 2>&1 &
 
 # View logs
 tail -f sweeper.log
 
 # Check status
-node sweeper.js --report
+node $SWEEPER --report
 
 # Stop
-node sweeper.js --stop
+node $SWEEPER --stop
 ```
+
+**Note:** The sweeper uses relative paths to find Salt SDK dependencies, so it works from any directory.
 
 ## Configuration Reference
 

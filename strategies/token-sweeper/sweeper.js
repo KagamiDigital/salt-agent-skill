@@ -9,8 +9,8 @@
  * Fully configurable - works with any ERC20 token, any protocol, any EVM chain.
  */
 
-const { Salt } = require('salt-sdk');
-const { ethers } = require('ethers');
+const { Salt } = require('../../node_modules/salt-sdk');
+const { ethers } = require('../../node_modules/ethers');
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
