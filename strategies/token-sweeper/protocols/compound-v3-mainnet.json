@@ -1,0 +1,34 @@
+{
+  "name": "compound-usdc-sweep",
+  "chain": {
+    "id": 42161,
+    "name": "Arbitrum One",
+    "rpcUrl": "https://arb1.arbitrum.io/rpc",
+    "explorer": "https://arbiscan.io"
+  },
+  "token": {
+    "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+    "symbol": "USDC",
+    "decimals": 6
+  },
+  "account": {
+    "id": "YOUR_SALT_ACCOUNT_ID",
+    "publicKey": "YOUR_SALT_ACCOUNT_PUBLIC_KEY"
+  },
+  "protocol": {
+    "name": "Compound V3",
+    "address": "0xA5EDBDD9646f8dFF606d7448e414884C7d905dCA",
+    "action": "supply",
+    "actionAbi": "function supply(address asset, uint256 amount)",
+    "actionParams": ["${token.address}", "${amount}"]
+  },
+  "polling": {
+    "intervalSeconds": 60,
+    "sweepThreshold": 0.1
+  },
+  "notifications": {
+    "enabled": true,
+    "channel": "telegram",
+    "target": "YOUR_TELEGRAM_USER_ID"
+  }
+}

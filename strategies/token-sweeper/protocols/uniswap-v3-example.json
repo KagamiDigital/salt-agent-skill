@@ -1,0 +1,43 @@
+{
+  "_comment": "Uniswap V3 example - increase liquidity for an existing position",
+  "name": "uniswap-usdc-lp",
+  "chain": {
+    "id": 42161,
+    "name": "Arbitrum One",
+    "rpcUrl": "https://arb1.arbitrum.io/rpc",
+    "explorer": "https://arbiscan.io"
+  },
+  "token": {
+    "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+    "symbol": "USDC",
+    "decimals": 6
+  },
+  "account": {
+    "id": "YOUR_SALT_ACCOUNT_ID",
+    "publicKey": "YOUR_SALT_ACCOUNT_PUBLIC_KEY"
+  },
+  "protocol": {
+    "name": "Uniswap V3 Position Manager",
+    "address": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+    "action": "increaseLiquidity",
+    "actionAbi": "function increaseLiquidity((uint256 tokenId, uint256 amount0Desired, uint256 amount1Desired, uint256 amount0Min, uint256 amount1Min, uint256 deadline) params) returns (uint128 liquidity, uint256 amount0, uint256 amount1)",
+    "_comment_params": "For struct params, wrap in array. Template vars work in nested objects.",
+    "actionParams": [[
+      "YOUR_NFT_POSITION_TOKEN_ID",
+      "${amount}",
+      0,
+      0,
+      0,
+      9999999999
+    ]]
+  },
+  "polling": {
+    "intervalSeconds": 60,
+    "sweepThreshold": 1.0
+  },
+  "notifications": {
+    "enabled": true,
+    "channel": "telegram",
+    "target": "YOUR_TELEGRAM_USER_ID"
+  }
+}
