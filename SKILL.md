@@ -262,6 +262,53 @@ salt stop -t                    # stop listener
 
 **`salt -help`** - Show all commands
 
+## Automation Strategies
+
+Pre-built automation scripts for common DeFi workflows. These run as background processes and handle repetitive tasks automatically.
+
+### Token Sweeper
+
+Monitors a Salt account for token deposits and automatically sweeps them into DeFi protocols (Aave, Compound, Uniswap, etc.).
+
+**Features:**
+- Works with any ERC20 token on any EVM chain
+- Protocol-agnostic (Aave, Compound, custom contracts)
+- Configurable thresholds and polling intervals
+- Telegram/Discord notifications on each sweep
+- State tracking and reporting
+
+**Quick Start:**
+```bash
+# Works from anywhere - uses relative paths to skill dependencies
+SWEEPER=~/.openclaw/workspace/skills/salt-sdk/strategies/token-sweeper/sweeper.js
+
+# Initialize config
+node $SWEEPER --init
+
+# Or use a template
+cp ~/.openclaw/workspace/skills/salt-sdk/strategies/token-sweeper/protocols/aave-v3-arb-sepolia.json config.json
+
+# Edit with your details
+nano config.json
+
+# Run sweeper
+nohup node $SWEEPER > sweeper.log 2>&1 &
+
+# Check status
+node $SWEEPER --report
+
+# Stop
+node $SWEEPER --stop
+```
+
+**Example Use Cases:**
+- Auto-supply USDC to Aave when deposited
+- Auto-compound yields to Compound
+- Auto-add liquidity to Uniswap pools
+- Auto-deposit to custom vaults
+
+See **[strategies/token-sweeper/README.md](strategies/token-sweeper/README.md)** for full documentation and protocol examples.
+
 ## Detailed Reference
 
 For complete troubleshooting, API details, and advanced patterns:
